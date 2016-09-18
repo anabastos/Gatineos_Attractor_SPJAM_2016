@@ -105,12 +105,15 @@ function create () {
     this.point = game.add.text(0, 0, "");
 
     this.timeTreta = 1;
-    timer = game.time.create(false);
-    timer.loop(8000, changeStatus, this);
-    timer.loop(5000, checkStatus, this);
-    timer.loop(20000, pee, this);
-    timer.loop(10000, walking, this);
-    timer.loop(2000, fadeTextPoint, this);
+
+    if (this.counterLife != 0){
+        timer = game.time.create(false);
+        timer.loop(13000, changeStatus, this);
+        timer.loop(5000, checkStatus, this);
+        timer.loop(20000, pee, this);
+        timer.loop(8000, walking, this);
+        timer.loop(2000, fadeTextPoint, this);
+    }
    
     timer.start();
 }
@@ -136,23 +139,23 @@ function pee(){
 }
 
 function walking(){
-    if (this.gatineo.status == -1){
+    //if (this.gatineo.status == -1){
         var walkDirection = Math.floor((Math.random() * 4) + 1); 
         //Se for 1 ou 2 o gato anda no eito x, se for impar o eixo x e' decrescido
         if (walkDirection <= 2){
             //this.gatineo.scale.x *= Math.pow(-1, walkDirection);
-            var positionTweenX = this.gatineo.position.x + 60*(Math.pow(-1, walkDirection));
-            console.log(positionTweenX);
+            var positionTweenX = this.gatineo.position.x + 120*(Math.pow(-1, walkDirection));
+            console.log('x' + positionTweenX);
             this.gatineoTween.to({ x: positionTweenX}, 3000, 'Linear', true, 0);
         } else {
-            var positionTweenY = this.gatineo.position.y + 60*(Math.pow(-1, walkDirection));
+            var positionTweenY = this.gatineo.position.y + 120*(Math.pow(-1, walkDirection));
             if (positionTweenY > 185 && positionTweenY < 500){
-                console.log(positionTweenY);
+                console.log('y' + positionTweenY);
                 this.gatineoTween.to({ y: positionTweenY}, 3000, 'Linear', true, 0);
             }
         }
         this.gatineo.animations.frame = 1;
-    }
+    //}
     
 }
 
