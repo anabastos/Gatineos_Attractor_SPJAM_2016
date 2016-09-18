@@ -4,4 +4,6 @@ body {
 
 canvas {
 	border: 1px solid #aaa;
+	display: block;
+    margin: 0 auto;
 }
