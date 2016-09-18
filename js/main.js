@@ -11,6 +11,7 @@ var game = new Phaser.Game(
 );
 
 
+
 function preload () {
 
     game.load.spritesheet('gatineo', 'images/gatineo.png', 88, 80);
@@ -25,7 +26,7 @@ function preload () {
     game.load.spritesheet('racao', 'images/racao.png', 60, 32);
     game.load.spritesheet('balaozinho', 'images/balaozinho.png', 64, 52);
 
-    //game.load.audio('boden', ['assets/audio/bodenstaendig_2000_in_rock_4bit.mp3', 'assets/audio/bodenstaendig_2000_in_rock_4bit.ogg']);
+    game.load.audio('som', ['gatineo_fofin.wav']);
 }
 
 function create () {
@@ -35,7 +36,7 @@ function create () {
     this.countergatineos = 0;
     this.counterPontos = 0;
 
-    var music = game.add.audio('boden');
+    var music = game.add.audio('som');
     music.play();
 
     var background = game.add.sprite(0, 0, 'background');
