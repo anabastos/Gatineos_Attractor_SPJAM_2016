@@ -29,7 +29,6 @@ function preload () {
 }
 
 function create () {
-    console.log('create init')
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     
     this.counterLife = 3;
@@ -83,7 +82,7 @@ function create () {
     }, this);
 
     this.gatineo.anchor.setTo(0.5, 0.5);
-    console.log("#"+((1<<24)*Math.random()|0).toString(16))
+    //console.log("#"+((1<<24)*Math.random()|0).toString(16))
     //this.gatineo.tint = "#"+((1<<24)*Math.random()|0).toString(16);
     var walk = this.gatineo.animations.add('walk');
     walk.enableUpdate = true;
@@ -105,16 +104,15 @@ function create () {
     this.text.font = 'Arial';
     this.point = game.add.text(0, 0, "");
 
+    this.timeTreta = 1;
     timer = game.time.create(false);
-    timer.loop(15000, changeStatus, this);
+    timer.loop(8000, changeStatus, this);
     timer.loop(5000, checkStatus, this);
-    timer.loop(22000, pee, this);
-    timer.loop(8000, walking, this);
+    timer.loop(20000, pee, this);
+    timer.loop(10000, walking, this);
     timer.loop(2000, fadeTextPoint, this);
    
     timer.start();
-
-    console.log('create end')
 }
 
 function fadeTextPoint() {
@@ -143,11 +141,13 @@ function walking(){
         //Se for 1 ou 2 o gato anda no eito x, se for impar o eixo x e' decrescido
         if (walkDirection <= 2){
             //this.gatineo.scale.x *= Math.pow(-1, walkDirection);
-            var positionTweenX = this.gatineo.position.x + 100*(Math.pow(-1, walkDirection));
+            var positionTweenX = this.gatineo.position.x + 60*(Math.pow(-1, walkDirection));
+            console.log(positionTweenX);
             this.gatineoTween.to({ x: positionTweenX}, 3000, 'Linear', true, 0);
         } else {
-            var positionTweenY = this.gatineo.position.y + 100*(Math.pow(-1, walkDirection));
+            var positionTweenY = this.gatineo.position.y + 60*(Math.pow(-1, walkDirection));
             if (positionTweenY > 185 && positionTweenY < 500){
+                console.log(positionTweenY);
                 this.gatineoTween.to({ y: positionTweenY}, 3000, 'Linear', true, 0);
             }
         }
@@ -169,6 +169,7 @@ function changeStatus(){
 
 function update () {
 
+    this.timeTreta += 1
     this.balaozinho.alignTo(this.gatineo, Phaser.TOP_RIGHT, 16);
 
     this.items.forEach((item, index) => {

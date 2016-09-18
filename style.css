@@ -7,3 +7,8 @@ canvas {
 	display: block;
     margin: 0 auto;
 }
+
+h1 {
+	font-family: arial;
+	color: green;
+}
