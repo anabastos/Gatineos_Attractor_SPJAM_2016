@@ -7,7 +7,6 @@ Atualmente estou rodando por `python -m SimpleHTTPServer 8080`
 
 ULTIMAS HORAS MEUS DEU DO CEU NAO VAI DAR TEMPO BRASIL
 [] Arrumar drag em drop com tutorial do ossinho(nao bugar enquanto anda)
-[] implementar destroy de objetos em grupo
 [] implementar perder vida e gato destroy apos 3 segundo de um status negativo
 [] implementar game overs
 [x] implementar walk com twins

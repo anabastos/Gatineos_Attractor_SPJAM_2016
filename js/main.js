@@ -24,6 +24,8 @@ function preload () {
     game.load.spritesheet('aguinha', 'images/aguinha.png', 60, 32);
     game.load.spritesheet('racao', 'images/racao.png', 60, 32);
     game.load.spritesheet('balaozinho', 'images/balaozinho.png', 64, 52);
+
+    //game.load.audio('boden', ['assets/audio/bodenstaendig_2000_in_rock_4bit.mp3', 'assets/audio/bodenstaendig_2000_in_rock_4bit.ogg']);
 }
 
 function create () {
@@ -33,6 +35,9 @@ function create () {
     this.counterLife = 3;
     this.countergatineos = 0;
     this.counterPontos = 0;
+
+    var music = game.add.audio('boden');
+    music.play();
 
     var background = game.add.sprite(0, 0, 'background');
 
@@ -54,14 +59,15 @@ function create () {
 
     //cria gatineo
     this.gatineo = game.add.sprite(game.world.centerX, game.world.centerY, 'gatineo');
-    this.countergatineos += 1;
+    
     this.game.physics.arcade.enable(this.gatineo);
     this.gatineo.originalPosition =  this.gatineo.position.clone();
-    //this.gatineo.events.onDragStop.add(function(currentSprite))
 
     this.gatineo.inputEnabled = true;
     this.gatineo.input.enableDrag();
     this.gatineo.anchor.setTo(0.5, 0.5);
+    console.log("#"+((1<<24)*Math.random()|0).toString(16))
+    //this.gatineo.tint = "#"+((1<<24)*Math.random()|0).toString(16);
     var walk = this.gatineo.animations.add('walk');
     walk.enableUpdate = true;
     this.gatineo.animations.play('walk', 3, true);
@@ -74,6 +80,7 @@ function create () {
     this.balaozinho.alignTo(this.gatineo, Phaser.TOP_RIGHT, 16);
 
     //text menu
+    this.countergatineos += 1;
     this.text = game.add.text(100, 120, "Pontos de Atração: " + this.counterPontos
                                  + '\n Gatineos: ' + this.countergatineos + "  Vidas: " + this.counterLife );
     this.text.fill = '#ffffff';
@@ -83,11 +90,16 @@ function create () {
 
     timer = game.time.create(false);
     timer.loop(10000, changeStatus, this);
-    timer.loop(6000, walking, this);
-    timer.loop(6000, pee, this);
+    timer.loop(20000, pee, this);
+    timer.loop(8000, walking, this);
+   
     timer.start();
 
     console.log('create end')
+}
+
+function addSong(){
+
 }
 
 function pee(){
@@ -96,28 +108,30 @@ function pee(){
 }
 
 function walking(){
-
-    var walkDirection = Math.floor((Math.random() * 4) + 1); 
-    //Se for 1 ou 2 o gato anda no eito x, se for impar o eixo x e' decrescido
-    if (walkDirection <= 2){
-        //this.gatineo.scale.x *= Math.pow(-1, walkDirection);
-        var positionTweenX = this.gatineo.position.x + 100*(Math.pow(-1, walkDirection));
-        this.gatineoTween.to({ x: positionTweenX}, 3000, 'Linear', true, 0);
-    } else {
-        var positionTweenY = this.gatineo.position.y + 100*(Math.pow(-1, walkDirection));
-        if (positionTweenY > 185 && positionTweenY < 500){
-            this.gatineoTween.to({ y: positionTweenY}, 3000, 'Linear', true, 0);
+    if (this.gatineo.status == -1){
+        var walkDirection = Math.floor((Math.random() * 4) + 1); 
+        //Se for 1 ou 2 o gato anda no eito x, se for impar o eixo x e' decrescido
+        if (walkDirection <= 2){
+            //this.gatineo.scale.x *= Math.pow(-1, walkDirection);
+            var positionTweenX = this.gatineo.position.x + 100*(Math.pow(-1, walkDirection));
+            this.gatineoTween.to({ x: positionTweenX}, 3000, 'Linear', true, 0);
+        } else {
+            var positionTweenY = this.gatineo.position.y + 100*(Math.pow(-1, walkDirection));
+            if (positionTweenY > 185 && positionTweenY < 500){
+                this.gatineoTween.to({ y: positionTweenY}, 3000, 'Linear', true, 0);
+            }
         }
+        this.gatineo.animations.frame = 1;
     }
-    this.gatineo.animations.frame = 1;
+    
 }
 
 function changeStatus(){
     if (this.balaozinho.visible == false){
         this.balaozinho.visible = true;
-        status = Math.floor((Math.random() * 5)); 
-        this.gatineo.status = status;
-        this.balaozinho.animations.frame = status;
+        status = Math.floor((Math.random() * 5) + 1); 
+        this.gatineo.status = status - 1;
+        this.balaozinho.animations.frame = status - 1;
         //timer.loop(5000, decreaseLife(status), this);
     }
     
@@ -134,9 +148,10 @@ function update () {
     this.balaozinho.alignTo(this.gatineo, Phaser.TOP_RIGHT, 16);
 
     this.items.forEach((item, index) => {
+        console.log("meme1s");
         if (checkOverlap(item, this.gatineo)){
+            console.log(this.gatineo.status + " "  + index);
             if ((this.gatineo.status == index)){
-                console.log("memes");
                 this.point.setText("+20");
                 this.counterPontos += 20;
                 this.balaozinho.visible = false;
