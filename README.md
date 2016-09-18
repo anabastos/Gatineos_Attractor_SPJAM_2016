@@ -14,6 +14,7 @@ ULTIMAS HORAS MEUS DEU DO CEU NAO VAI DAR TEMPO BRASIL
 [] spawn de gatinhos
 [x] gato mija e solta bola de pelo
 [x] vasoura limpa mijo e bola de pelo
+[] text de pontos some eventualmente
 
 adicionais
 [] fazer flip do gatineo
