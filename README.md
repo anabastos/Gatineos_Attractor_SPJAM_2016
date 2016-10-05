@@ -7,12 +7,12 @@ Atualmente estou rodando por `python -m SimpleHTTPServer 8080`
 
 ULTIMAS HORAS MEUS DEU DO CEU NAO VAI DAR TEMPO BRASIL
 
-- [x]Arrumar drag em drop com tutorial do ossinho(nao bugar enquanto anda)
+- [x] Arrumar drag em drop com tutorial do ossinho(nao bugar enquanto anda)
 - [x] implementar perder vida e gato destroy apos 3 segundo de um status negativo
-- [] implementar game overs
+- [ ] implementar game overs
 - [x] implementar walk com twins
 - [x] balaozinho funfar suave na colisao
-- [] spawn de gatinhos
+- [ ] spawn de gatinhos
 - [x] gatinhos coloridos
 - [x] gato mija e solta bola de pelo
 - [x] vasoura limpa mijo e bola de pelo
