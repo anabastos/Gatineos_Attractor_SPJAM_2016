@@ -3,10 +3,6 @@ Jogo feito por mim na SPJAM 2016 :)
 
 Jogo feito em 1 dia e meio na SPJAM 2016 e minha primeira vez usando phaser.io :smile:
 
-Atualmente estou rodando por `python -m SimpleHTTPServer 8080`
-
-ULTIMAS HORAS MEUS DEU DO CEU NAO VAI DAR TEMPO BRASIL
-
 - [x] Arrumar drag em drop com tutorial do ossinho(nao bugar enquanto anda)
 - [x] implementar perder vida e gato destroy apos 3 segundo de um status negativo
 - [ ] implementar game overs
@@ -19,5 +15,5 @@ ULTIMAS HORAS MEUS DEU DO CEU NAO VAI DAR TEMPO BRASIL
 - [x] text de pontos some eventualmente
 - [x] menuzinhos q conta gatinhos
 
-Nao deu tempo galera eh nois.
-Sepa dps eu refaco estruturando direito as coisas e usando a es6 pq isso ta nojentao
+Nao deu tempo.
+Dei uma reestruturada mas nao vou trabalhar mais nisso :(
